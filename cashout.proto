@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.betdev.betweb.cashout;
+
+import "google/protobuf/wrappers.proto";
+
+option java_multiple_files = true;
+option java_package = "cloud.betdev.betweb.cashout.grpc";
+
+service BetWebCashout {
+  rpc CalculateCashout(ProtoCalculateCashoutRequest)
+      returns (ProtoCalculateCashoutResponse);
+}
+
+message ProtoCalculateCashoutRequest {
+  string account_id = 1;
+  string bet_id = 2;
+}
+
+message ProtoCalculateCashoutResponse {
+  google.protobuf.UInt64Value cashout_amount = 1;
+  google.protobuf.DoubleValue cashout_coef = 2;
+  bool cashout_outdated = 3;
+}
